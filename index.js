@@ -21,6 +21,16 @@ connection.connect(error => {
   }
 });
 
+app.post('/auth/signup',(res,req,next)=>{
+const {firstname,middlename,lastname,email,password,confirmpassword}=req.body;
+console.log({firstname,middlename,lastname,email,password,confirmpassword});
+if(password !==confirmpassword){
+
+    return res.statusCode(400).json({message:"password mismatch with confirmPassword"});
+}
+return res.json({message:"signup"});
+
+})
 
 
 
