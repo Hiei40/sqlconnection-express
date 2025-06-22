@@ -28,7 +28,15 @@ if(password !==confirmpassword){
 
     return res.statusCode(400).json({message:"password mismatch with confirmPassword"});
 }
-return res.json({message:"signup"});
+const findQuery='SELECT * FROM USERS WHERE u_Email=?'
+connection.execute(findQuery,[email],(error,data)=>{
+if(error){
+    return res.statusCode(500).json({message:"Fail to run this ",error});
+}
+
+
+});
+return res.json({message:"signup",data});
 
 })
 
